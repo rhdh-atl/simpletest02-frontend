@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: simpletest02-poi-map-app-dev
+  annotations:
+    argocd/app-name: simpletest02-poi-map-app-dev
+    backstage.io/kubernetes-id: simpletest02-poi-map-app
+    backstage.io/kubernetes-namespace: simpletest02
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rhdh-atl/simpletest02-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.j0i9yf30.eastus2.aroapp.io/dev-pipelines/ns/simpletest02/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.j0i9yf30.eastus2.aroapp.io/k8s/ns/simpletest02/deployments/simpletest02-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.j0i9yf30.eastus2.aroapp.io/#https://github.com/rhdh-atl/simpletest02-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://simpletest02-poi-map-app-simpletest02.apps.j0i9yf30.eastus2.aroapp.io
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/simpletest02"
+  system: workshop-system-simpletest02
+  consumesApis:
+    - gateway-api-simpletest02
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-simpletest02
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/simpletest02"
